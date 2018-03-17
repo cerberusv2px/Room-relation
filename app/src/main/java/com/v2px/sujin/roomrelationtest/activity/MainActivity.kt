@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // insertData()
-        displayData()
+         insertData()
+        //displayData()
     }
 
 
@@ -36,7 +36,8 @@ class MainActivity : AppCompatActivity() {
                 User(2, "Amy",
                         listOf(
                                 Repo(3, "Dagger", 2),
-                                Repo(4, "Rx", 2)))
+                                Repo(4, "Rx", 2))),
+                User(3, "David", null)
         )
     }
 
@@ -46,7 +47,8 @@ class MainActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .doOnNext {
                     dao.saveUser(it)
-                    dao.saveRepos(it.repoList!!)
+                    if(it.repoList!=null)
+                        dao.saveRepos(it.repoList!!)
                 }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {

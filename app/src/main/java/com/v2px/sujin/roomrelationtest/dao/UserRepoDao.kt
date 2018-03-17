@@ -25,8 +25,8 @@ interface UserRepoDao {
     fun saveUser(user: User)
 
     @Insert(onConflict = REPLACE)
-    fun saveUsers(userList: List<User>)
+    fun saveUsers(userList: List<User>?)
 
     @Insert(onConflict = REPLACE)
-    fun saveRepos(repoList: List<Repo>)
+    fun saveRepos(repoList: List<Repo>?)
 }
