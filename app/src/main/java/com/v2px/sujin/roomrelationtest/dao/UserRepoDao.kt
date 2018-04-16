@@ -6,8 +6,7 @@ import android.arch.persistence.room.OnConflictStrategy.REPLACE
 import android.arch.persistence.room.Query
 import com.v2px.sujin.roomrelationtest.model.Repo
 import com.v2px.sujin.roomrelationtest.model.User
-import io.reactivex.Completable
-import io.reactivex.Observable
+import io.reactivex.Flowable
 
 
 @Dao
@@ -17,17 +16,17 @@ interface UserRepoDao {
     fun getUser(id: Int): User
 
     @Query("SELECT * FROM user")
-    fun getAllUser(): List<User>
+    fun getAllUser(): Flowable<List<User>>
 
     @Query("SELECT * FROM repo where user_id=:userId")
-    fun getRepos(userId: Int): List<Repo>
+    fun getRepos(userId: Int): Flowable<List<Repo>>?
 
     @Insert(onConflict = REPLACE)
     fun saveUser(user: User)
 
     @Insert(onConflict = REPLACE)
-    fun saveUsers(userList: List<User>)
+    fun saveUsers(userList: List<User>?)
 
     @Insert(onConflict = REPLACE)
-    fun saveRepos(repoList: List<Repo>)
+    fun saveRepos(repoList: List<Repo>?)
 }

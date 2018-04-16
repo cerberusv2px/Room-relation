@@ -10,7 +10,7 @@ import android.arch.persistence.room.PrimaryKey
 data class User (
         @PrimaryKey var id: Int,
         var name: String,
-        @Ignore var repoList: List<Repo>?
+        @Ignore var repoList: List<Repo>? = null
 ) {
     constructor() : this(0,"", null)
 }
