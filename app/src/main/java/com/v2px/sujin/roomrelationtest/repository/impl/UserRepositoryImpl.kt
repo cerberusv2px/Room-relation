@@ -15,13 +15,29 @@ class UserRepositoryImpl(context: Context) : UserRepository {
     private val dao = instance.getUserRepoDAO()
 
     override fun getAllUser(): Flowable<List<User>> {
-        return dao.getAllUser()
-                .map {
-                    it.map {
-                        val repoList =  dao.getRepos(it.id)
-                        it.repoList =  repoList?.blockingFirst()
-                        return@map it
-                    }
-                }
+        return Flowable.fromCallable {
+            dao.getAllUser().map {user ->
+                user.repoList = dao.getRepos(user.id)
+                user
+            }
+        }
+                /*.map {
+                    val repoList =  dao.getRepos(it.id)
+                    it.repoList =  repoList
+                    return@map it
+                }*/
+                /*.flatMap { userList ->
+                    Flowable.fromIterable(userList)
+                            .concatMap { user ->
+                                dao.getRepos(user.id)?.map {
+                                    user.repoList = it
+                                    user
+                                }
+                            }.toList()
+                    Flowable.just(userList)
+
+                }*/
+
+
     }
 }

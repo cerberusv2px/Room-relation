@@ -16,10 +16,10 @@ interface UserRepoDao {
     fun getUser(id: Int): User
 
     @Query("SELECT * FROM user")
-    fun getAllUser(): Flowable<List<User>>
+    fun getAllUser(): List<User>
 
     @Query("SELECT * FROM repo where user_id=:userId")
-    fun getRepos(userId: Int): Flowable<List<Repo>>?
+    fun getRepos(userId: Int): List<Repo>?
 
     @Insert(onConflict = REPLACE)
     fun saveUser(user: User)

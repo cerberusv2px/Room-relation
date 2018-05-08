@@ -8,5 +8,5 @@ import io.reactivex.Flowable
  */
 interface RepRepository {
 
-    fun getAllRepo(userId: Int): Flowable<List<Repo>>?
+    fun getAllRepo(userId: Int): List<Repo>?
 }

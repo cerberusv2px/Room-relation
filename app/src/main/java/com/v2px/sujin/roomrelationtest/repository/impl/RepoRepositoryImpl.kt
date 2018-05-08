@@ -15,7 +15,7 @@ class RepoRepositoryImpl(context: Context) : RepRepository {
     private val instance = AppDatabase.getInstance(context)
     private val dao = instance.getUserRepoDAO()
 
-    override fun getAllRepo(userId: Int): Flowable<List<Repo>>? {
+    override fun getAllRepo(userId: Int): List<Repo>? {
         return dao.getRepos(userId)
     }
 
