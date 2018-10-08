@@ -1,9 +1,11 @@
 package com.v2px.sujin.roomrelationtest.activity
 
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.v2px.sujin.roomrelationtest.AppDatabase
 import com.v2px.sujin.roomrelationtest.R
+import com.v2px.sujin.roomrelationtest.databinding.ActivityMainBinding
 import com.v2px.sujin.roomrelationtest.model.Repo
 import com.v2px.sujin.roomrelationtest.model.User
 import com.v2px.sujin.roomrelationtest.repository.impl.UserRepositoryImpl
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this@MainActivity, R.layout.activity_main)
          //insertData()
         displayData()
     }

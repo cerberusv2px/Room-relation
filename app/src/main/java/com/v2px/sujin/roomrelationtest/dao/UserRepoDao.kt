@@ -12,7 +12,7 @@ import io.reactivex.Flowable
 @Dao
 interface UserRepoDao {
 
-    @Query("SELECT * from user WHERE id=:id")
+    @Query("SELECT * from userr WHERE id=:id")
     fun getUser(id: Int): User
 
     @Query("SELECT * FROM user")
